@@ -9,10 +9,12 @@
   </a>
 </p>
 <h3 align="center">Cryptography</h3>
+<h2 align="center">
+  A Writeup on Mathematical Cryptography, from Shift Ciphers to Elliptic Curve Groups
+</h2>
 <p align="center">
-  An Writeup on Mathematical Cryptography, from Shift Ciphers to Elliptic Curve Groups
+  By <a href="https://github.com/1nfocalypse">1nfocalypse</a>
 </p>
-
 
 ## Contents
 
@@ -63,4 +65,4 @@ $\mathbf{mod}$ : This is the modulus operator, which can be understand as the re
 
 ## Classical Cryptography
 
-Let us begin by introducing some terms utilized in mathematical cryptography. We will begin with $\mathscr{A}$, or the $\mathit{alphabet}$ $\mathit{space}$. The alphabet space is defined as 
+Let us begin by introducing some terms utilized in mathematical cryptography. We will begin with $\mathscr{A}$, or the $\mathit{alphabet}$ $\mathit{space}$. The alphabet space is defined as a finite set of symbols for communication, such as our alphabet, or the binary set K = {0,1}. From this, we will then define the message space, $\mathscr{M}$. The message space is a string of symbols from $\mathscr{A}$ that is to be communicated. For example, should we wish to send a string of 8 characters with $\mathscr{A}$ = {0,1}, we would denote $\mathscr{M} as 
