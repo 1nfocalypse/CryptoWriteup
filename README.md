@@ -8,8 +8,8 @@
   	<img alt="License: CC-BY-SA-4.0" src="https://img.shields.io/github/license/1nfocalypse/CryptoWriteup">
   </a>
 </p>
-<h3 align="center">Cryptography</h3>
-<h2 align="center">
+<h2 align="center">Cryptography</h3>
+<h3 align="center">
   A Writeup on Mathematical Cryptography, from Shift Ciphers to Elliptic Curve Groups
 </h2>
 <p align="center">
@@ -84,8 +84,51 @@ With this in mind, let us proceed to the first $\mathit{cipher}$, or encryption 
 
 Shift Ciphers are one of, if not the simplest, kinds of ciphers. Originating with Julius Caesar, and hence sometimes called the $\mathit{Caesar}$ $\mathit{Cipher}$, it generally utilizes $\mathscr{A}$ = {A,B,C,...,Y,Z}. Each value in $\mathscr{A}$ is then mapped to a numeric value X = {0,1,2,...,24,25}. This mapping is also utilized with the key, of which $\mathscr{K}$ = $\mathbb{N}$. Upon deciding upon a key value such that $k \in \mathbb{N}$, the encryption function is $E_{k} = m_{i} + k\\ \mathbf{mod}\\ 26$. As you might expect, the decryption function is $D_{k} = c_{i} - k\\ \mathbf{mod}\\ 26$. This results in the values of each letter being shifted to the right by k % 26 to encrypt, and to the left by k % 26 to decrypt. Clasically, Caesar was known to choose k = 3, and as such, so shall we.
 
-Given the table
+Given the mappings:
+- $A \leftrightarrow 0$
+- $B \leftrightarrow 1$
+- $C \leftrightarrow 2$
+- and so on,
 
-Let the $\mathit{cleartext}\, or original message, be "ILIKECRYPTOGRAPHY". Let k = 3. Applying the encryption function, we obtain:
-$C_{1} = I + 3 \rightarrow 
+Let the $\mathit{cleartext}\$, or original message M, be "ILIKECRYPTOGRAPHY". Let k = 3. Applying the encryption function, we obtain:
+- $C_{1} = I + 3 \rightarrow C_{1} = 8 + 3\\ \mathbf{mod}\\ 26= 11$
+- $C_{2} = L + 3 \rightarrow C_{2} = 11 + 3\\ \mathbf{mod}\\ 26 = 14$
+- $C_{3} = I + 3 \rightarrow C_{3} = 8 + 3\\ \mathbf{mod}\\ 26 = 11$
+- $C_{4} = K + 3 \rightarrow C_{4} = 10 + 3\\ \mathbf{mod}\\ 26 = 13$
+- $C_{5} = E + 3 \rightarrow C_{5} = 4 + 3\\ \mathbf{mod}\\ 26 = 7$
+- $C_{6} = C + 3 \rightarrow C_{6} = 2 + 3\\ \mathbf{mod}\\ 26 = 5$
+- $C_{7} = R + 3 \rightarrow C_{7} = 17 + 3\\ \mathbf{mod}\\ 26 = 20$
+- $C_{8} = Y + 3 \rightarrow C_{8} = 24 + 3\\ \mathbf{mod}\\ 26 = 1$
+- $C_{9} = P + 3 \rightarrow C_{9} = 15 + 3\\ \mathbf{mod}\\ 26 = 18$
+- $C_{10} = T + 3 \rightarrow C_{10} = 19 + 3\\ \mathbf{mod}\\ 26 = 22$
+- $C_{11} = O + 3 \rightarrow C_{11} = 14 + 3\\ \mathbf{mod}\\ 26 = 17$
+- $C_{12} = G + 3 \rightarrow C_{12} = 6 + 3\\ \mathbf{mod}\\ 26 = 9$
+- $C_{13} = R + 3 \rightarrow C_{13} = 17 + 3\\ \mathbf{mod}\\ 26 = 20$
+- $C_{14} = A + 3 \rightarrow C_{14} = 0 + 3\\ \mathbf{mod}\\ 26 = 3$
+- $C_{15} = P + 3 \rightarrow C_{15} = 15 + 3\\ \mathbf{mod}\\ 26 = 18$
+- $C_{16} = H + 3 \rightarrow C_{16} = 7 + 3\\ \mathbf{mod}\\ 26 = 10$
+- $C_{17} = Y + 3 \rightarrow C_{17} = 24 + 3\\ \mathbf{mod}\\ 26 = 1$ 
 
+From this, we map the numbers resulting from $E_{3}$ to the letters in the same manner as we did previously in order to optain the $\mathit{ciphertext}$, or the encrypted text, which is:
+
+C = LOLNHFUBSWRJUDSKB
+
+Applying the decryption function, $D_{3}$, is a similar process, subtracting three instead of adding it mod 26, briefly demonstrated here:
+- $M_{1} = L - 3 \rightarrow M_{1} = 11 - 3\\ \mathbf{mod}\\ 26= 8$
+- $M_{2} = O - 3 \rightarrow M_{2} = 14 - 3\\ \mathbf{mod}\\ 26 = 11$
+- $M_{3} = L - 3 \rightarrow M_{3} = 11 - 3\\ \mathbf{mod}\\ 26 = 8$
+- and so on,
+
+Repeating the mapping from numbers to letters with the output of $D_{3}$, we obtain M again, M being:
+
+M = ILIKECRYPTOGRAPHY
+
+Thus concluding the encryption and decryption of a Shift Cipher.
+
+# But Wait, Why Don't We Use This?
+
+Given that the Shift Cipher takes place over the English alphabet and has a constant k, one must only perform at most 25 shifts to be able to decipher the code, making it computationally inexpensive to break. A frequency analysis can also be performed, which uses the fact that certain characters occur at certain frequencies in the English language. By measuring the frequency at which characters occur in the ciphertext, it is possible to take an educated guess as to which characters they represent, and break the code in that manner. It also requires that it be given that a key can be communicated without risk of interception, as otherwise, the entire system would be vulnerable.
+
+## Vigenère Cipher
+
+The Vigenère Cipher 
