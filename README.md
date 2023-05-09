@@ -70,6 +70,8 @@ $\bigoplus$ : This is the symbol for a logical XOR, or exclusive or. This denote
 
 for each element in the bitstring.
 
+$\exists$: This means that some element of a set must exist, or exist with some property.
+
 $\mathbf{mod}$ : This is the modulus operator, which can be understood as the remainder when dividing the left number by the right. It may also be represented as %.
 
 ## Terms
@@ -211,9 +213,53 @@ Feistel Networks are also able to utilize unbalanced $L$ and $R$ subsets with a 
 
 ### Why Don't We Use It?
 
-We do! While DES, the most well-known implementation of Feistel Networks, is no longer in use, it is not due to the Feistel Network itself. Feistel Networks, and modified Feistel Networks, are still in use with numerous protocols, such as Twofish, Camellia, and many others. 
+We do! While DES, the most well-known implementation of Feistel Networks, is no longer in use, it is not due to the Feistel Network itself. Feistel Networks, and modified Feistel Networks, are still in use with numerous protocols, such as Twofish, Camellia, and many others. From this point forward, all algorithms mentioned are in active use in modern cryptographic protocols.
 
 ## More Background
 
 From this point forward, some additional background in Abstract Algebra and Number Theory must be provided. If you are already comfortable in these fields, please feel free to skip ahead to [RSA](#rsa).
+
+We must first define one of the foundations for the rest of the writeup, which is an algebraic structure known as a $\mathit{Group}$. A group is a set of numbers, defined under some operation, denoted here as $\bullet$, such that the following $\mathit{axioms}$, or rules, are satisfied:
+
+- Associativity: $\forall a,b,c \in G, a \bullet (b \bullet C) = (a \bullet b) \bullet c$
+- Identity: $\exists i \in G : \forall a \in G, i \bullet a = a, a \bullet i = a$.
+- Inverse: $\forall a \in G, \exists b : a \bullet b = i, b \bullet a = i$, where $i$ is the identity element.
+- Closure: $\forall a,b \in G, \exists c \in G : a \bullet b = c$.
+
+We must also define the term $\mathit{Abelian}\\ \mathit{group}$, which adds the axiom of commutativity, such that:
+- $\forall a,b \in G, a \bullet b = b \bullet a$.
+
+Groups have or may have certain properties, such as:
+- Order: The number of elements within the group. A group must have some order, represented $ord(G)$ or $|G|$.
+- Generators: An element $a \in G$ such that $a^n$ enumerates all elements of $G$.
+
+We are interested in two kinds of groups in this writeup:
+- Groups called $\mathbb{Z}_{p}^*$ groups, which consist of all numbers coprime with p, which in turn means that they share no common factors other than 1.
+- Groups formed with Elliptic Curves under a special definition of addition.
+
+In terms of generators, we are interested in finding the order of elements in $\mathbb{Z}_{p}^*$ 
+
+
+Given the order of $\mathbb{Z}_{p}^* = n$, we want to find $z : z^n \equiv 1$.
+
+Examples of $\mathbb{Z}_{p}^*$ groups are as follows:
+- $\mathbb{Z}_{8}^* = \\{1,3,5,7\\}$
+- $\mathbb{Z}_{7}^* = \\{1,2,3,4,5,6\\}$
+
+You may notice that $|\mathbb{Z}_{7}^*| = p - 1 \rightarrow 7 - 1 = 6$. This is true for all groups of this nature with $p \in primes$
+
+We must also bring in the problem of $\mathit{P}$ vs $\mathit{NP}$, which postulates whether or not that each problem with a solution that is easily verified as valid also possesses a solution which is computationally "easy" to calculate. Computationally "easy" is defined as solvable within polynomial time. Cryptography, as a field, is predicated upon this being not true, however, it is still an open question. ([Solve it, and win $1,000,000 USD!](https://brilliant.org/wiki/millennium-prize-problems/#p-vs-np))
+
+Given this, we must introduce two problems, that, as of the time of writing, are currently not solveable in polynomial time, however, are easily verified to be true.
+- Integer factorization. RSA utilizes two large integers, $p$ and $q$, then multiplies them together to form $n \in $\mathbb{N}$ such that the only factors of $n$ are, indeed, $p$ and $q$. It then tasks the eavesdropper with factoring $n$ in order to recover the cleartext from the ciphertext.
+- The Discrete Logarithm. Given a group $G$, let $a,b \in G$. The discrete logarithm problem asks the eavesdropper to find $k \in \mathbb{Z} : b^k = a$. This is the problem utilized by ElGamal. 
+
+Lastly, we will discuss Euler's Totient Function, which has the notation $\phi(n)$. This is the number of numbers coprime with $n$. Euler's Totient Function is defined as:
+- $\phi(n) = n\prod_{p|n}\left( 1-\frac{1}{p} \right)$
+
+In English, this simply means, for each prime number that divides $n$, multiply $\left( 1-\frac{1}{p} \right)$, with $p$ equal to some distinct prime that divides $n$. 
+
+Thus concludes our essential bits from Abstract Algebra and Number Theory. Now back to the cryptography!
+
+## RSA
 
