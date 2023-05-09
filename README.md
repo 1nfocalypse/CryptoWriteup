@@ -268,7 +268,7 @@ Thus concludes our essential bits from Abstract Algebra and Number Theory. Now b
 RSA, or Rivest-Shamir-Adleman, is an asymmetric-key cryptography algorithm, also known as a public-key cryptography algorithm. Public key cryptography works via a publication of a public key by a user, such that anyone may use this public key to encrypt their message $M$ into $C$ and send it to the recipient. However, only the holder of the private key may decrypt this ciphertext $C$ back into $M$ with their private key. RSA publishes public keys in the manner ($n$,$e$),
 such that $n$ = $p * q$, and $e$ is the $\mathit{encryption}\\ \mathit{exponent}$, or public key, which has already been previously computed by the individual who has published the public key. The private key of the individual is thus $d$, the $\mathit{decryption}\\ \mathit{exponent}$. Something to note is that $\forall e, \exists d : ed\\ \mathbf{mod}\\ \phi (pq) \equiv 1$. Therefore, in order to ascertain $d$, one must first factor $n$. There is no known non-quantum (more on this later) efficient algorithm for this task, leading to the RSA Problem of large integer factorization.
 
-$E_{k}$ for RSA is as follows:
+Key Generation for RSA is as follows:
 - Let $p,q$ be sufficiently large prime numbers. Let $n = p * q$. $p$ and $q$ should be kept secret.
 - Take $\phi(pq) = (p-1)(q-1) = \phi$. Choose an encryption exponent, $e$, such that $2 < e < \phi$, and $e$ is coprime with $\phi$.
 - Determine $d$ as $d \equiv e^{-1}$
@@ -282,7 +282,10 @@ $\mathit{Extended}\\ \mathit{Euclidean}\\ \mathit{Algorithm}$, described as foll
 - Upon computing this, generate $row_{2}$ as $e = x_{2} * r_{1} + r_{2}  |$ ($1$) ($0-x_{1} * 1$) ($1 - x_{2} * s_{2}$) (Please note, the reference to $s_{2}$ here refers to the value of $s_{2}$ on $row_{2}$, not $row_{1}$. 
 - This pattern is repeated until $r_{n} = 0$, at which point the value in $s_{2}$ on $row_{n}$ is $\equiv e^{-1} \bmod \phi$.
 
-$D_{k}$ for RSA is quite simple, and is as follows:
+$E_{k}$ for RSA is simple, and is as follows:
+- $m^e \bmod n \quiv c \bmod n$
+
+$D_{k}$ for RSA is also quite simple, and is as follows:
 - $c^d \bmod n \equiv m \bmod n$
 
 
