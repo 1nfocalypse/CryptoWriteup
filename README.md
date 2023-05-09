@@ -20,8 +20,9 @@
 
 - [Summary](#summary)
 - [Some Background](#some-background)
-- [Shift Ciphers](#classical)
-- [Vigenère Cipher](#classical)
+- [Terms](#terms)
+- [Shift Ciphers](#shift-ciphers)
+- [Vigenère Cipher](#vigenère-cipher)
 - [Feistel Network](#feistel-networks)
 - [More Background](#more-background)
 - [RSA](#RSA)
@@ -61,8 +62,30 @@ $\mathbb{Z}$ : This is the symbol for the set of Integers, or whole numbers from
 
 : : This is the symbol for "such that," and read in the same manner.
 
-$\mathbf{mod}$ : This is the modulus operator, which can be understand as the remainder when dividing the left number by the right. It may also be represented as %.
+$\mathbf{mod}$ : This is the modulus operator, which can be understood as the remainder when dividing the left number by the right. It may also be represented as %.
 
-## Classical Cryptography
+## Terms
 
-Let us begin by introducing some terms utilized in mathematical cryptography. We will begin with $\mathscr{A}$, or the $\mathit{alphabet}$ $\mathit{space}$. The alphabet space is defined as a finite set of symbols for communication, such as our alphabet, or the binary set K = {0,1}. From this, we will then define the message space, $\mathscr{M}$. The message space is a string of symbols from $\mathscr{A}$ that is to be communicated. For example, should we wish to send a string of 8 characters with $\mathscr{A}$ = {0,1}, we would denote $\mathscr{M} as 
+Let us begin by introducing some terms utilized in mathematical cryptography. We will begin with $\mathscr{A}$, or the $\mathit{alphabet}$ $\mathit{space}$. The alphabet space is defined as a finite set of symbols for communication, such as our alphabet, or the binary set K = {0,1}. 
+
+From this, we will then define the $\mathit{message}$ $\mathit{space}$, $\mathscr{M}$. The message space is a string of symbols from $\mathscr{A}$ that is to be communicated. For example, should we wish to send a string of 8 characters with $\mathscr{A}$ = {0,1}, we would denote $\mathscr{M}$ as $\\{ 0,1 \\} ^8$. 
+
+Lastly, we must define the encryption and decryption functions, and along with them, the $\mathit{encryption}$ $\mathit{space}$, $\mathscr{C}$, and the $\mathit{key}$ $\mathit{space}$ $\mathscr{K}$.
+
+The $\mathit{encryption}$ $\mathit{function}$ $E_{k}$ is any function such that $E_{k} : \mathscr{M} \mapsto \mathscr{C}$, with $\mapsto$ denoting that every value in $\mathscr{M}$ must have a corresponding value in $\mathscr{C}$ that will be the result. 
+
+The $\mathit{decryption}$ $\mathit{function}$ $D_{k}$ is any function such that $D_{k} : \mathscr{C} \mapsto \mathscr{M}$.
+
+The encryption space can be thought of simply as another message space, however, it is after the encryption function has been applied to the original message. The key space can be thought of simply as where the keys utilized in the encryption and decryption functions are stored. 
+
+With this in mind, let us proceed to the first $\mathit{cipher}$, or encryption scheme, the Shift Cipher.
+
+## Shift Ciphers
+
+Shift Ciphers are one of, if not the simplest, kinds of ciphers. Originating with Julius Caesar, and hence sometimes called the $\mathit{Caesar}$ $\mathit{Cipher}$, it generally utilizes $\mathscr{A}$ = {A,B,C,...,Y,Z}. Each value in $\mathscr{A}$ is then mapped to a numeric value X = {0,1,2,...,24,25}. This mapping is also utilized with the key, of which $\mathscr{K}$ = $\mathbb{N}$. Upon deciding upon a key value such that $k \in \mathbb{N}$, the encryption function is $E_{k} = m_{i} + k\\ \mathbf{mod}\\ 26$. As you might expect, the decryption function is $D_{k} = c_{i} - k\\ \mathbf{mod}\\ 26$. This results in the values of each letter being shifted to the right by k % 26 to encrypt, and to the left by k % 26 to decrypt. Clasically, Caesar was known to choose k = 3, and as such, so shall we.
+
+Given the table
+
+Let the $\mathit{cleartext}\, or original message, be "ILIKECRYPTOGRAPHY". Let k = 3. Applying the encryption function, we obtain:
+$C_{1} = I + 3 \rightarrow 
+
