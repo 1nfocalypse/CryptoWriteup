@@ -251,7 +251,7 @@ You may notice that $|\mathbb{Z}_{7}^*| = p - 1 \rightarrow 7 - 1 = 6$. This is 
 We must also bring in the problem of $\mathit{P}$ vs $\mathit{NP}$, which postulates whether or not that each problem with a solution that is easily verified as valid also possesses a solution which is computationally "easy" to calculate. Computationally "easy" is defined as solvable within polynomial time. Cryptography, as a field, is predicated upon this being not true, however, it is still an open question. ([Solve it, and win $1,000,000 USD!](https://brilliant.org/wiki/millennium-prize-problems/#p-vs-np)).
 
 Given this, we must introduce two problems, that, as of the time of writing, are currently not solveable in polynomial time, however, are easily verified to be true.
-- Integer factorization. RSA utilizes two large integers, $p$ and $q$, then multiplies them together to form $n \in $\mathbb{N}$ such that the only factors of $n$ are, indeed, $p$ and $q$. It then tasks the eavesdropper with factoring $n$ in order to recover the cleartext from the ciphertext.
+- Integer factorization. RSA utilizes two large integers, $p$ and $q$, then multiplies them together to form $n \in \mathbb{N}$ such that the only factors of $n$ are, indeed, $p$ and $q$. It then tasks the eavesdropper with factoring $n$ in order to recover the cleartext from the ciphertext.
 - The Discrete Logarithm. Given a group $G$, let $a,b \in G$. The discrete logarithm problem asks the eavesdropper to find $k \in \mathbb{Z} : b^k = a$. This is the problem utilized by ElGamal. 
 
 Lastly, we will discuss Euler's Totient Function, which has the notation $\phi(n)$. This is the number of numbers coprime with $n$. Euler's Totient Function is defined as:
