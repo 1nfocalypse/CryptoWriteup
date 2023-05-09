@@ -283,7 +283,7 @@ $\mathit{Extended}\\ \mathit{Euclidean}\\ \mathit{Algorithm}$, described as foll
 - This pattern is repeated until $r_{n} = 0$, at which point the value in $s_{2}$ on $row_{n}$ is $\equiv e^{-1} \bmod \phi$.
 
 $E_{k}$ for RSA is simple, and is as follows:
-- $m^e \bmod n \quiv c \bmod n$
+- $m^e \bmod n \equiv c \bmod n$
 
 $D_{k}$ for RSA is also quite simple, and is as follows:
 - $c^d \bmod n \equiv m \bmod n$
