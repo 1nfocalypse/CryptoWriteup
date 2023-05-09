@@ -259,7 +259,7 @@ Lastly, we will discuss Euler's Totient Function, which has the notation $\phi(n
 
 In English, this simply means, for each prime number that divides $n$, multiply $\left( 1-\frac{1}{p} \right)$, with $p$ equal to some distinct prime that divides $n$.
 
-It is of note that if $n$ is prime, $\phi(n) = (n-1)$. This is a multiplicative property, such that if $n,a$ are coprime, $\phi(na) = \phi(n) * \phi(a) = (n-1)(a-1)$.
+It is of note that if $n$ is prime, $\phi(n) = (n-1)$. This is a multiplicative property, such that if $n,a$ are coprime and prime, $\phi(na) = \phi(n) * \phi(a) = (n-1)(a-1)$.
 
 Thus concludes our essential bits from Abstract Algebra and Number Theory. Now back to the cryptography!
 
