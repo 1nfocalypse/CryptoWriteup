@@ -125,10 +125,45 @@ M = ILIKECRYPTOGRAPHY
 
 Thus concluding the encryption and decryption of a Shift Cipher.
 
-# But Wait, Why Don't We Use This?
+### But Wait, Why Don't We Use This?
 
 Given that the Shift Cipher takes place over the English alphabet and has a constant k, one must only perform at most 25 shifts to be able to decipher the code, making it computationally inexpensive to break. A frequency analysis can also be performed, which uses the fact that certain characters occur at certain frequencies in the English language. By measuring the frequency at which characters occur in the ciphertext, it is possible to take an educated guess as to which characters they represent, and break the code in that manner. It also requires that it be given that a key can be communicated without risk of interception, as otherwise, the entire system would be vulnerable.
 
 ## Vigenère Cipher
 
-The Vigenère Cipher 
+The Vigenère Cipher is similar to a shift cipher, however, utilizes a variable value of k based on a $\mathscr{K}$ composed of a string, in turn making it a $\mathit{polyalphabetic}$ cipher. The Shift Cipher, conversely, is considered a $\mathit{monoalphabetic}$ cipher. By utilizing the variable k value, the Vigenère Cipher makes itself significantly less vulnerable to a frequency analysis and significantly more computationally complex to crack. Utilizing the same mapping of {A,B,C,...,Y,Z} $\leftrightarrow$ {0,1,2,...,24,25}, we find $E_{k}$ to be defined as $E_{k} = m_{i} + k_{i}\\ \mathbf{mod}\ 26$, and $D_{k}$ to be defined similarly as $D_{k} = c_{i} - k_{i}\\ \mathbf{mod}\\ 26$. An example of a Vigenère Cipher can be found below.
+
+Let k = "ILIKE" and m = "CRYPTOGRAPHY"
+- $k_{1}$ = I = 8
+- $k_{2}$ = L = 11
+- $k_{3}$ = I = 8
+- $k_{4}$ = K = 10
+- $k_{5}$ = E = 4
+
+The above step is purely done for the reader's reference below.
+
+- $C_{1} = C + I \rightarrow C_{1} = 2 + 8\\ \mathbf{mod}\\ 26= 10$
+- $C_{2} = R + L \rightarrow C_{2} = 17 + 11\\ \mathbf{mod}\\ 26 = 2$
+- $C_{3} = Y + I \rightarrow C_{3} = 24 + 8\\ \mathbf{mod}\\ 26 = 6$
+- $C_{4} = P + K \rightarrow C_{4} = 15 + 10\\ \mathbf{mod}\\ 26 = 25$
+- $C_{5} = T + E \rightarrow C_{5} = 19 + 4\\ \mathbf{mod}\\ 26 = 23$
+- $C_{6} = O + I \rightarrow C_{6} = 14 + 8\\ \mathbf{mod}\\ 26 = 22$
+- and so on.
+
+The result of $E_{k}$ is C = KCGZXWRZKTPJ.
+
+To decode a Vigenère Cipher, we simply subtract the value of $k_{i}$ from the value of the ciphertext, following the above given equation $D_{k}$.
+
+- $M_{1} = K - I \rightarrow M_{1} = 10 - 8\\ \mathbf{mod}\\ 26= 2$
+- $M_{2} = C - L \rightarrow M_{2} = 2 - 11\\ \mathbf{mod}\\ 26 = 17$
+- $M_{3} = G - I \rightarrow M_{3} = 6 - 8\\ \mathbf{mod}\\ 26 = 24$
+- $M_{4} = Z - K \rightarrow M_{4} = 25 - 10\\ \mathbf{mod}\\ 26 = 15$
+- $M_{5} = X - E \rightarrow M_{5} = 23 - 4\\ \mathbf{mod}\\ 26 = 19$
+- $M_{6} = W - I \rightarrow M_{6} = 22 - 8\\ \mathbf{mod}\\ 26 = 14$
+- and so on.
+
+The result of $D_{k}$ is M = CRYPTOGRAPHY, our original cleartext.
+
+### Why Don't We Use It?
+
+In 1863, a man named Friedrich Kasiski proposed a method of determining the key length within a Vigenère Cipher by measuring the difference between numerical locations of patterns within the ciphertext. For example, if one is to note the pattern IQE at location 110, 138, and 226, it is likely that the keyword length divides the difference between these locations. The differences 138 - 110 = 28 and 226 - 110 = 116 leave us with two non-prime numbers, which in turn are factored into primes as $2^2 * 7$ and $2^2 * 29$. This suggests that the length of the key is equal to $2^2$, or 4. The ciphertext is then blocked into lengths equal to the keylength, and characters under each component of the key are examined on their own utilizing frequency analysis. From this frequency analysis, it is possible to determine what the key is, as the Vigenère Cipher has been reduced into a monoalphabetic cipher.
