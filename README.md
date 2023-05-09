@@ -25,8 +25,8 @@
 - [Vigenère Cipher](#vigenère-cipher)
 - [Feistel Network](#feistel-networks)
 - [More Background](#more-background)
-- [RSA](#RSA)
-- [ElGamal](#ElGamal)
+- [RSA](#rsa)
+- [ElGamal](#elgamal)
 - [Elliptic Curves](#elliptic-urves)
 - [Additional Information](#additional)
 - [Recommended Reading](#recommended)
@@ -237,7 +237,7 @@ We are interested in two kinds of groups in this writeup:
 - Groups called $\mathbb{Z}_{p}^*$ groups, which consist of all numbers coprime with p, which in turn means that they share no common factors other than 1.
 - Groups formed with Elliptic Curves under a special definition of addition.
 
-In terms of generators, we are interested in finding the order of elements in $\mathbb{Z}_{p}^*$ 
+In terms of generators, we are interested in finding the order of elements in $\mathbb{Z}_{p}^*$:
 
 
 Given the order of $\mathbb{Z}_{p}^* = n$, we want to find $z : z^n \equiv 1$.
@@ -246,9 +246,9 @@ Examples of $\mathbb{Z}_{p}^*$ groups are as follows:
 - $\mathbb{Z}_{8}^* = \\{1,3,5,7\\}$
 - $\mathbb{Z}_{7}^* = \\{1,2,3,4,5,6\\}$
 
-You may notice that $|\mathbb{Z}_{7}^*| = p - 1 \rightarrow 7 - 1 = 6$. This is true for all groups of this nature with $p \in primes$
+You may notice that $|\mathbb{Z}_{7}^*| = p - 1 \rightarrow 7 - 1 = 6$. This is true for all groups of this nature with $p \in primes$.
 
-We must also bring in the problem of $\mathit{P}$ vs $\mathit{NP}$, which postulates whether or not that each problem with a solution that is easily verified as valid also possesses a solution which is computationally "easy" to calculate. Computationally "easy" is defined as solvable within polynomial time. Cryptography, as a field, is predicated upon this being not true, however, it is still an open question. ([Solve it, and win $1,000,000 USD!](https://brilliant.org/wiki/millennium-prize-problems/#p-vs-np))
+We must also bring in the problem of $\mathit{P}$ vs $\mathit{NP}$, which postulates whether or not that each problem with a solution that is easily verified as valid also possesses a solution which is computationally "easy" to calculate. Computationally "easy" is defined as solvable within polynomial time. Cryptography, as a field, is predicated upon this being not true, however, it is still an open question. ([Solve it, and win $1,000,000 USD!](https://brilliant.org/wiki/millennium-prize-problems/#p-vs-np)).
 
 Given this, we must introduce two problems, that, as of the time of writing, are currently not solveable in polynomial time, however, are easily verified to be true.
 - Integer factorization. RSA utilizes two large integers, $p$ and $q$, then multiplies them together to form $n \in $\mathbb{N}$ such that the only factors of $n$ are, indeed, $p$ and $q$. It then tasks the eavesdropper with factoring $n$ in order to recover the cleartext from the ciphertext.
@@ -257,9 +257,36 @@ Given this, we must introduce two problems, that, as of the time of writing, are
 Lastly, we will discuss Euler's Totient Function, which has the notation $\phi(n)$. This is the number of numbers coprime with $n$. Euler's Totient Function is defined as:
 - $\phi(n) = n\prod_{p|n}\left( 1-\frac{1}{p} \right)$
 
-In English, this simply means, for each prime number that divides $n$, multiply $\left( 1-\frac{1}{p} \right)$, with $p$ equal to some distinct prime that divides $n$. 
+In English, this simply means, for each prime number that divides $n$, multiply $\left( 1-\frac{1}{p} \right)$, with $p$ equal to some distinct prime that divides $n$.
+
+It is of note that if $n$ is prime, $\phi(n) = (n-1)$. This is a multiplicative property, such that if $n,a$ are coprime, $\phi(na) = \phi(n) * \phi(a) = (n-1)(a-1)$.
 
 Thus concludes our essential bits from Abstract Algebra and Number Theory. Now back to the cryptography!
 
 ## RSA
+
+RSA, or Rivest-Shamir-Adleman, is an asymmetric-key cryptography algorithm, also known as a public-key cryptography algorithm. Public key cryptography works via a publication of a secret key by a user, such that anyone may use this public key to encrypt their message $M$ into $C$ and send it to the recipient. However, only the holder of the private key may decrypt this ciphertext $C$ back into $M$. RSA publishes public keys in the manner ($n$,$e$),
+such that $n$ = $p * q$, and $e$ is the $\mathit{encryption}\\ \mathit{exponent}$, or public key, which has already been previously computed by the individual who has published the public key. The private key of the individual is thus $d$, the $\mathit{decryption}\\ \mathit{exponent}$, also known as the private key. Something to note is that $\forall e, \exists d : ed\\ \mathbf{mod}\\ \phi (pq) \equiv 1$. Therefore, in order to ascertain $d$, one must first factor $n$. There is no known non-quantum (more on this later) efficient algorithm for this task, leading to the RSA Problem of large integer factorization.
+
+$E_k$ for RSA is as follows:
+- Let $p,q$ be sufficiently large prime numbers. Let $n = p * q$. $p$ and $q$ should be kept secret.
+- Take $\phi(pq) = (p-1)(q-1) = \phi$. Choose an encryption exponent, $e$, such that $2 < e < \phi$, and $e$ is coprime with $\phi$.
+- Determine $d$ as $d \equiv e^{-1}$
+- Publish ($n$, $e$), keeping $d$ private.
+
+### Determining $d$
+Some of you may be scratching your heads, asking yourselves why we are able to trivialize finding the inverse for the encryption exponent when it would seem that $de \bmod \phi \equiv 1$ is an incredibly annoying problem for large numbers. Fear not! This can be accomplished using the
+$\mathit{Extended}\\ \mathit{Euclidean}\\ \mathit{Algorithm}$, described as follows:
+- Let $n$ be the number of rows, $x_{i}$ be a factor you must solve for, $r_{i}$ be the remainder given $x_{i}$, and $s_{1}, s_{2}, s_{3}$ be columns to the right. Set $r_{1}$ as $\phi = x_{1} * e + r_{1} | $s_{1} = 0, s_{2} = 1, s_{3} = s_{1} - x_{1} * s_{2}$
+- This results in $\phi = x_{1} * e + r_{1} |$ ($0$) ($1$) ($0-x_{1}*1$)
+- Upon computing this, generate $row_{2}$ as $e = x_{2} * r_{1} + r_{2}  |$ ($1$) ($0-x_{1} * 1$) ($1 - x_{2} * s_{2}$) (Please note, the reference to $s_{2}$ here refers to the value of $s_{2}$ on $row_{2}$, not $row_{1}$. 
+- This pattern is repeated until $r_{n} = 0$, at which point the value in $s_{2}$ on $row_{n}$ is $\equiv e^{-1}$.
+
+The RSA numbers, which can be found [here](https://en.wikipedia.org/wiki/RSA_numbers), are the ones utilized in legitimate implementations.
+Legitimate RSA implementations also utilize padding, as there have been several successful, although highly specific, attacks against the protocol without it. However, with padding, RSA is currently regarded as secure.
+
+## ElGamal
+
+
+
 
