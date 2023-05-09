@@ -268,7 +268,7 @@ Thus concludes our essential bits from Abstract Algebra and Number Theory. Now b
 RSA, or Rivest-Shamir-Adleman, is an asymmetric-key cryptography algorithm, also known as a public-key cryptography algorithm. Public key cryptography works via a publication of a secret key by a user, such that anyone may use this public key to encrypt their message $M$ into $C$ and send it to the recipient. However, only the holder of the private key may decrypt this ciphertext $C$ back into $M$. RSA publishes public keys in the manner ($n$,$e$),
 such that $n$ = $p * q$, and $e$ is the $\mathit{encryption}\\ \mathit{exponent}$, or public key, which has already been previously computed by the individual who has published the public key. The private key of the individual is thus $d$, the $\mathit{decryption}\\ \mathit{exponent}$, also known as the private key. Something to note is that $\forall e, \exists d : ed\\ \mathbf{mod}\\ \phi (pq) \equiv 1$. Therefore, in order to ascertain $d$, one must first factor $n$. There is no known non-quantum (more on this later) efficient algorithm for this task, leading to the RSA Problem of large integer factorization.
 
-$E_k$ for RSA is as follows:
+$E_{k}$ for RSA is as follows:
 - Let $p,q$ be sufficiently large prime numbers. Let $n = p * q$. $p$ and $q$ should be kept secret.
 - Take $\phi(pq) = (p-1)(q-1) = \phi$. Choose an encryption exponent, $e$, such that $2 < e < \phi$, and $e$ is coprime with $\phi$.
 - Determine $d$ as $d \equiv e^{-1}$
@@ -280,7 +280,11 @@ $\mathit{Extended}\\ \mathit{Euclidean}\\ \mathit{Algorithm}$, described as foll
 - Let $n$ be the number of rows, $x_{i}$ be a factor you must solve for, $r_{i}$ be the remainder given $x_{i}$, and $s_{1}, s_{2}, s_{3}$ be columns to the right. Set $r_{1}$ as $\phi = x_{1} * e + r_{1} | $s_{1} = 0, s_{2} = 1, s_{3} = s_{1} - x_{1} * s_{2}$
 - This results in $\phi = x_{1} * e + r_{1} |$ ($0$) ($1$) ($0-x_{1}*1$)
 - Upon computing this, generate $row_{2}$ as $e = x_{2} * r_{1} + r_{2}  |$ ($1$) ($0-x_{1} * 1$) ($1 - x_{2} * s_{2}$) (Please note, the reference to $s_{2}$ here refers to the value of $s_{2}$ on $row_{2}$, not $row_{1}$. 
-- This pattern is repeated until $r_{n} = 0$, at which point the value in $s_{2}$ on $row_{n}$ is $\equiv e^{-1}$.
+- This pattern is repeated until $r_{n} = 0$, at which point the value in $s_{2}$ on $row_{n}$ is $\equiv e^{-1} \bmod \phi$.
+
+$D_{k}$ for RSA is quite simple, and is as follows:
+- $c^d \bmod n \equiv m \bmod n$
+
 
 The RSA numbers, which can be found [here](https://en.wikipedia.org/wiki/RSA_numbers), are the ones utilized in legitimate implementations.
 Legitimate RSA implementations also utilize padding, as there have been several successful, although highly specific, attacks against the protocol without it. However, with padding, RSA is currently regarded as secure.
