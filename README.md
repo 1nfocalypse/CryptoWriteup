@@ -62,6 +62,14 @@ $\mathbb{Z}$ : This is the symbol for the set of Integers, or whole numbers from
 
 : : This is the symbol for "such that," and read in the same manner.
 
+$\bigoplus$ : This is the symbol for a logical XOR, or exclusive or. This denotes an operation such that:
+- $0 \bigoplus 0 = 0$
+- $0 \bigoplus 1 = 1$
+- $1 \bigoplus 0 = 1$
+- $1 \bigoplus 1 = 0$
+
+for each element in the bitstring.
+
 $\mathbf{mod}$ : This is the modulus operator, which can be understood as the remainder when dividing the left number by the right. It may also be represented as %.
 
 ## Terms
@@ -70,13 +78,17 @@ Let us begin by introducing some terms utilized in mathematical cryptography. We
 
 From this, we will then define the $\mathit{message}$ $\mathit{space}$, $\mathscr{M}$. The message space is a string of symbols from $\mathscr{A}$ that is to be communicated. For example, should we wish to send a string of 8 characters with $\mathscr{A}$ = {0,1}, we would denote $\mathscr{M}$ as $\\{ 0,1 \\} ^8$. 
 
-Lastly, we must define the encryption and decryption functions, and along with them, the $\mathit{encryption}$ $\mathit{space}$, $\mathscr{C}$, and the $\mathit{key}$ $\mathit{space}$ $\mathscr{K}$.
+We must also define the encryption and decryption functions, and along with them, the $\mathit{encryption}$ $\mathit{space}$, $\mathscr{C}$, and the $\mathit{key}$ $\mathit{space}$ $\mathscr{K}$.
 
 The $\mathit{encryption}$ $\mathit{function}$ $E_{k}$ is any function such that $E_{k} : \mathscr{M} \mapsto \mathscr{C}$, with $\mapsto$ denoting that every value in $\mathscr{M}$ must have a corresponding value in $\mathscr{C}$ that will be the result. 
 
 The $\mathit{decryption}$ $\mathit{function}$ $D_{k}$ is any function such that $D_{k} : \mathscr{C} \mapsto \mathscr{M}$.
 
 The encryption space can be thought of simply as another message space, however, it is after the encryption function has been applied to the original message. The key space can be thought of simply as where the keys utilized in the encryption and decryption functions are stored. 
+
+$\mathit{Symmetric}\\ \mathit{Key}\\ \mathit{Cryptography}$ is where the same key, k, is used for both encryption and decryption.
+
+$\mathit{Asymmetric}\\ \mathit{Key}\\ \mathit{Cryptography}$ is where published, public keys are used for encryption, and unpublished, private keys are used for decryption.
 
 With this in mind, let us proceed to the first $\mathit{cipher}$, or encryption scheme, the Shift Cipher.
 
@@ -129,6 +141,7 @@ Thus concluding the encryption and decryption of a Shift Cipher.
 
 Given that the Shift Cipher takes place over the English alphabet and has a constant k, one must only perform at most 25 shifts to be able to decipher the code, making it computationally inexpensive to break. A frequency analysis can also be performed, which uses the fact that certain characters occur at certain frequencies in the English language. By measuring the frequency at which characters occur in the ciphertext, it is possible to take an educated guess as to which characters they represent, and break the code in that manner. It also requires that it be given that a key can be communicated without risk of interception, as otherwise, the entire system would be vulnerable.
 
+
 ## Vigenère Cipher
 
 The Vigenère Cipher is similar to a shift cipher, however, utilizes a variable value of k based on a $\mathscr{K}$ composed of a string, in turn making it a $\mathit{polyalphabetic}$ cipher. The Shift Cipher, conversely, is considered a $\mathit{monoalphabetic}$ cipher. By utilizing the variable k value, the Vigenère Cipher makes itself significantly less vulnerable to a frequency analysis and significantly more computationally complex to crack. Utilizing the same mapping of {A,B,C,...,Y,Z} $\leftrightarrow$ {0,1,2,...,24,25}, we find $E_{k}$ to be defined as $E_{k} = m_{i} + k_{i}\\ \mathbf{mod}\ 26$, and $D_{k}$ to be defined similarly as $D_{k} = c_{i} - k_{i}\\ \mathbf{mod}\\ 26$. An example of a Vigenère Cipher can be found below.
@@ -166,4 +179,41 @@ The result of $D_{k}$ is M = CRYPTOGRAPHY, our original cleartext.
 
 ### Why Don't We Use It?
 
-In 1863, a man named Friedrich Kasiski proposed a method of determining the key length within a Vigenère Cipher by measuring the difference between numerical locations of patterns within the ciphertext. For example, if one is to note the pattern IQE at location 110, 138, and 226, it is likely that the keyword length divides the difference between these locations. The differences 138 - 110 = 28 and 226 - 110 = 116 leave us with two non-prime numbers, which in turn are factored into primes as $2^2 * 7$ and $2^2 * 29$. This suggests that the length of the key is equal to $2^2$, or 4. The ciphertext is then blocked into lengths equal to the keylength, and characters under each component of the key are examined on their own utilizing frequency analysis. From this frequency analysis, it is possible to determine what the key is, as the Vigenère Cipher has been reduced into a monoalphabetic cipher. Means to avoid this type of analysis were developed, such as the running key Vigenère Cipher, which utilizes a key that is at least the same length as the plaintext that it will be utilized to encrypt. This makes the Kasiski analysis impossible, however, given a long enough ciphertext, patterns within the key may show themselves. To avoid this, a key comprised of totally random characters that is at least the length of the cleartext is utilized, which makes the 
+In 1863, a man named Friedrich Kasiski proposed a method of determining the key length within a Vigenère Cipher by measuring the difference between numerical locations of patterns within the ciphertext. For example, if one is to note the pattern IQE at location 110, 138, and 226, it is likely that the keyword length divides the difference between these locations. The differences 138 - 110 = 28 and 226 - 110 = 116 leave us with two non-prime numbers, which in turn are factored into primes as $2^2 * 7$ and $2^2 * 29$. This suggests that the length of the key is equal to $2^2$, or 4. The ciphertext is then blocked into lengths equal to the keylength, and characters under each component of the key are examined on their own utilizing frequency analysis. From this frequency analysis, it is possible to determine what the key is, as the Vigenère Cipher has been reduced into a monoalphabetic cipher. Means to avoid this type of analysis were developed, such as the running key Vigenère Cipher, which utilizes a key that is at least the same length as the plaintext that it will be utilized to encrypt. This makes the Kasiski analysis impossible, however, given a long enough ciphertext, patterns within the key may show themselves. To avoid this, a key comprised of totally random characters that is at least the length of the cleartext is utilized, which makes the ciphertext immune to known cryptanalysis. This is called a Vernam One-Time Pad, and is a perfectly valid means of symmetric cryptography.
+
+## Feistel Networks
+
+Feistel networks are the conclusion of the "Classical Cryptography" portion of this writeup. A Feistel Network is a $\mathit{block}\\ \mathit{cipher}$, which utilizes blocks of cleartext of a fixed size. Feistel Networks operate via $\mathit{confusion}$ and $\mathit{diffusion}$. Confusion is the goal of confusing the relationship between the key and the ciphertext, and diffusion is the goal of making the ciphertext bit depend on multiple bits of plaintext data. A Feistel Cipher maps $2n$ bits to a ciphertext of the same length,
+with a key of length $n$, where $n \in \mathbb{N}$. Some function F, typically a XOR, must also be defined. Once this has been determined, a number of rounds, key, and cleartext are passed to the Feistel network, where the number of rounds is the number of iterations that a Feistel Network will go through, the key is some key $k$ of length $n$, 
+and the cleartext is the original message $m$.
+
+At this point, the Feistel Nework functions as follows.
+
+$E_{k}$ is defined as:
+- Let i be defined as 0,1,...,r-1,r
+- Let $L_{i}$ and $R_{i}$ be the Left and Right half of the bitstring being processed, with that being initialized as the cleartext such that $L_{0}$ is the left half of the cleartext and $R_{0}$ is the right half of the cleartext.
+- For each round r, calculate:
+- $L_{i+1} = R_{i}$
+- $R_{i+1} = L_{i} \bigoplus F(R_{i},K_{i})$
+
+Which yields a ciphertext C = $R_{r+1}$ | $L_{r+1}$.
+
+$D_{k}$ is defined as:
+- Let i be defined as r,r-1,...,1,0
+- Let $R_{i+1}$ be initialized as the $\mathit{left}$ half of the ciphertext C, and $L_{i+1}$ be initialized as the $\mathit{right}$ half of the ciphertext C
+- For each round r, calculate:
+- $R_{i} = L_{i+1}$
+- $L_{i} = R_{i+1} \bigoplus F(L_{i+1},K_{i})$
+
+Which yields the plaintext message M. 
+
+Feistel Networks are also able to utilize unbalanced $L$ and $R$ subsets with a modified structure, however, this is the generic form for which they take.
+
+### Why Don't We Use It?
+
+We do! While DES, the most well-known implementation of Feistel Networks, is no longer in use, it is not due to the Feistel Network itself. Feistel Networks, and modified Feistel Networks, are still in use with numerous protocols, such as Twofish, Camellia, and many others. 
+
+## More Background
+
+From this point forward, some additional background in Abstract Algebra and Number Theory must be provided. If you are already comfortable in these fields, please feel free to skip ahead to [RSA](#rsa).
+
