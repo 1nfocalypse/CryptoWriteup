@@ -13,4 +13,7 @@ Please keep commits clean and somewhat formal. This is intended to be an educati
 Utilization of the format provided is also expected. Changes to the structure will be considered, however, if it is deemed unnecessary, the PR will be rejected.
 
 Please provide relevant resources as well, and if you suggest practice problems, please provide some suggested solutions.
-Any case not covered by these standards will be judged on a case-by-case basis, and added in addendum to this document afterwards. 
+Any case not covered by these standards will be judged on a case-by-case basis, and added in addendum to this document afterwards.
+
+## Implementations
+Implementations are welcome, and a repo to an implementation, so long as it is *your* implementation, are encouraged. Feel free to use any language that you desire, so long as it displays the mathematics behind the cryptography. Toy or practical implementations are acceptable.
