@@ -364,26 +364,26 @@ Elliptic Curves can be utilized in multiple cryptosystems, notably ElGamal as de
 however, the task is that, given some elliptic curve $C$, with points $P,Q \in C$, find the scalar $x : Q = xP$. Further discussion of implementation is lengthy, and as such is omitted from this document for brevity, however, links to relevant papers and books that describe it can be found in
 [Recommended Reading](#recommended-reading).
 
-# Additional Information
+## Additional Information
 
 As stated before, this writeup is not comprehensive, ergo some things do not warrant an entire section, however, should be mentioned. Such topics include Quantum Cryptography, Shor's Algorithm, and the NTRU cryptosystem. 
 
-## Quantum Cryptography 
+### Quantum Cryptography 
 Quantum Cryptography refers to utilizing the properties of quantum mechanics for the purpose of cryptography. Notably, it typically plays on something called the No-Cloning Theorem, which states that it is impossible to create an independent and identical copy of an unknown quantum state. 
 Ergo, if an eavesdropper attempts to read the data in its encrypted state, the state will collapse. Quantum cryptography shows promise for longevity of security, in the sense that information can be called secure if encrypted for longer periods of time than it would have otherwise been with 
 classical encryption. The mathematics required at this point is far beyond the scope of this document, however, it is worth knowing that this type of cryptography is a facet of the field.
 
-## Shor's Algorithm
+### Shor's Algorithm
 Shor's Algorithm makes solving Discrete Logarithms and the RSA Problems less computationally intensive. It is a quantum algorithm that, assuming the quantum computer utilizing it is capable of running it, is able to solve these problems in polynomial time, which is considered satisfactory and not
 computationally hard. As quantum computer development furthers, the likelihood that one will exist that is capable of utilizing this algorithm increases. Some postulate that this will have catastrophic consequences, as a vast swath of previously secret information will no longer be guaranteed to be.
 However, many symmetric key algorithms and some others, referred to as post-quantum algorithms, still retain their status as computationally hard, and therefore, secure. 
 
-## Post-Quantum Algorithms and the NTRU Cryptosystem
+### Post-Quantum Algorithms and the NTRU Cryptosystem
 As previously mentioned, there are algorithms that are still secure in a post-quantum world. The most famous is the NTRU cryptosystem, which utilizes an algebraic structure known as a $\mathbf{lattice}$ and a problem known as the $\mathbf{Shortest}$ $\mathbf{Vector}$ $\mathbf{Problem}$., or 
 $\mathbf{SVP}$. This algorithm still has no known approach to breaking it, and is resistant to Shor's Algorithm. It is currently recommended by some governmental agencies, and implemented in some financial institutions along with some other projects, such as OpenSSH. However, the mathematics
 required for understanding NTRU are also beyond the scope of this document. Further reading for those interested will once again be put into [Recommended Reading](#recommended-reading).
 
-# Recommended Reading
+## Recommended Reading
 Here are some good resources for additional information about cryptography, along with further reading for Elliptic Curves and NTRU/Post-Quantum Cryptography. 
 
 - [Coding Theory and Cryptography: The Essentials 2Ed](https://www.amazon.com/Coding-Theory-Cryptography-Essentials-Mathematics/dp/0824704657/), by D.C. Hankerson, et. Al.
@@ -397,10 +397,10 @@ Here are some good resources for additional information about cryptography, alon
 - [A Course in Number Theory and Cryptography](https://www.amazon.com/dp/1461264421/), by Neil Koblitz
 - [Yet Another Introductory Number Theory Textbook - Cryptology Emphasis](https://math.libretexts.org/Bookshelves/Combinatorics_and_Discrete_Mathematics/Yet_Another_Introductory_Number_Theory_Textbook_-_Cryptology_Emphasis_(Poritz)), by Jonathan Poritz (This one's free!)
 
-# Problems
+## Problems
 Practice Problems are available [here](/practice.md), and solutions are available [here](/solved.md).
 
-# Thanks and Acknowledgements
+## Thanks and Acknowledgements
 Thank you for taking the time to read this writeup! It was written over the span of three weeks, and largely in rare, but intense burts, therefore there may be some errors. If you catch any, please submit a PR, and if merged, your name will be added here! 
 ### Merged PR Contributors
 - Could be you!
