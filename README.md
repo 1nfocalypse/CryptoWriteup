@@ -379,7 +379,7 @@ computationally hard. As quantum computer development furthers, the likelihood t
 However, many symmetric key algorithms and some others, referred to as post-quantum algorithms, still retain their status as computationally hard, and therefore, secure. 
 
 ## Post-Quantum Algorithms and the NTRU Cryptosystem
-As previously mentioned, there are algorithms that are still secure in a post-quantum world. The most famous is the NTRU cryptosystem, which utilizes an algebraic structure known as a $\mathbf{lattice}$ and a problem known as the $\mathbf{Shortest$ $\mathbf{Vector}$ $\mathbf{Problem}$., or 
+As previously mentioned, there are algorithms that are still secure in a post-quantum world. The most famous is the NTRU cryptosystem, which utilizes an algebraic structure known as a $\mathbf{lattice}$ and a problem known as the $\mathbf{Shortest}$ $\mathbf{Vector}$ $\mathbf{Problem}$., or 
 $\mathbf{SVP}$. This algorithm still has no known approach to breaking it, and is resistant to Shor's Algorithm. It is currently recommended by some governmental agencies, and implemented in some financial institutions along with some other projects, such as OpenSSH. However, the mathematics
 required for understanding NTRU are also beyond the scope of this document. Further reading for those interested will once again be put into [Recommended Reading](#recommended-reading).
 
@@ -397,7 +397,7 @@ Here are some good resources for additional information about cryptography, alon
 - [A Course in Number Theory and Cryptography](https://www.amazon.com/dp/1461264421/), by Neil Koblitz
 - [Yet Another Introductory Number Theory Textbook - Cryptology Emphasis](https://math.libretexts.org/Bookshelves/Combinatorics_and_Discrete_Mathematics/Yet_Another_Introductory_Number_Theory_Textbook_-_Cryptology_Emphasis_(Poritz)), by Jonathan Poritz (This one's free!)
 
-#Problems
+# Problems
 Practice Problems are available [here](/practice.md), and solutions are available [here](/solved.md).
 
 # Thanks and Acknowledgements
