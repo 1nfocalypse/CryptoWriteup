@@ -74,6 +74,8 @@ $\exists$: This means that some element of a set must exist, or exist with some 
 
 $\mathbf{mod}$ : This is the modulus operator, which can be understood as the remainder when dividing the left number by the right. It may also be represented as %.
 
+$\equiv$ : This is the symbol for "equivalent", which shows the result of a modulo operation. For example, $7$ $\mathbf{mod}$ $3$ $\equiv$ $1$.
+
 ## Terms
 
 Let us begin by introducing some terms utilized in mathematical cryptography. We will begin with $\mathscr{A}$, or the $\mathit{alphabet}$ $\mathit{space}$. The alphabet space is defined as a finite set of symbols for communication, such as our alphabet, or the binary set K = {0,1}. 
@@ -321,7 +323,7 @@ ElGamal is incredibly flexible, and via the random generation of $k$ for each me
 Discrete Logarithm Problem postulates, as per the earlier definition, given a group $G$, let $a,b \in G$. The discrete logarithm asks the eavesdropper to find $k \in \mathbb{Z} : b^k = a$. This problem is trivial at "small" $p$ values, however, becomes very computationally expensive with a large $p$.
 It is typically approached with the "Baby Step, Giant Step" algorithm, which involves the creation of multiple tables and calculating the inverse of the generator. The algorithm is as follows:
 - $log_{\alpha}{\beta}$, given $\alpha, \beta, p$
-- Calculate $m$ such that $m = \lceil \sqrt{p} \rceil$, with the marks on either side denoting "ceiling", or an uncondiitonal round up in the case of a decimal. 
+- Calculate $m$ such that $m = \lceil \sqrt{p} \rceil$, with the marks on either side denoting "ceiling", or an unconditonal round up in the case of a decimal. 
 - Create a table of $m-1$ entries, with $j$ being the numbers 0 through $m - 1$, and then below these entries, the value of $\alpha^j \bmod p$. 
 - Calculate the inverse of the generator using the Extended Euclidean Algorithm, as described above.
 - Raise this to the $m \bmod p = \alpha^{-m}$.
@@ -331,4 +333,14 @@ It is typically approached with the "Baby Step, Giant Step" algorithm, which inv
 As you can imagine, using this with a very large $p$ becomes highly inefficient, thus leading to the security of ElGamal. It is a highly flexible algorithm, and as such, sees heavy use in both academia and practical application, being a part of the GNU Privacy Guard software, recent versions of PGP, and several other cryptosystems. 
 
 ## Elliptic Curves
-Elliptic Curves are a unique class of curves, typically, though not always, resulting from Weierstrass equations of the form $y^2 = x^3 + ax + b$. These curves are very unique in the sense that they form not only a group, but an Abelian group under a modified definition of addition. 
+Elliptic Curves are a unique class of curves, typically, though not always, resulting from Weierstrass equations of the form $y^2 = x^3 + ax + b % n : n > 3$. These curves are very unique in the sense that they form not only a group, but an Abelian group under a modified definition of addition
+and the inclusion of a *point at infinity*, $\mathscr{O}$, which is the identity element of the group.
+This additive group is different than the $\mathbb{Z}_p^*$ multiplicative groups that we described prior in the sense that it is a group under an addition operation, and not a multiplication operation, ergo many of the methods we used before are not directly applicable.
+However, we do encounter that the fields that these curves are defined over are either of a prime characteristic, or over a $\mathbf{Galois}$ $\mathbf{Field}$, which is a finite field of characteristic $2^{n}$. A side note here is that in the field that cryptography falls under,
+[Coding Theory](https://en.wikipedia.org/wiki/Coding_theory), GF2 (Read Galois Field 2 or Galois Field of Characteristic 2, denoting a finite field $\mathbb{Z}_2$) in particular is heavily utilized. There will be another writeup published here on Error Correcting Codes, which is another subset of Coding Theory. 
+
+However, to digress, Elliptic Curves are utilized due to the smaller key size they require while retaining the same level of security. In order for an elliptic curve to be formed in the case of using a prime $p$, one must have it that $x,y \in Z_p$, and the equation 
+$4a^3 + 27b^2 \not\equiv$ $0$ $\mathbf{mod}$ $p$. The values of $y : y \in \mathbb{Z}$ are referred to as $\mathbf{Quadratic}$ $\mathbf{Residues}$, and paired with $x$ in the usual Cartesian manner, form $\mathbf{Affine}$ $\mathbf{Points}$ on the resulting 2 Dimensional Euclidean plane expressed as
+a Cartesian plane. These are the points that are the elements of our group. 
+
+To actually utilize the group, we must first define addition in context. 
