@@ -1,11 +1,11 @@
 <p align="center">
   <a href="https://github.com/1nfocalypse/CryptoWriteup">
-	<img alt="1nfocalypse - Mathematical Cryptography" src="https://i.imgur.com/gvXGf7x.png">
+	<img alt="1nfocalypse - Mathematical Cryptography" src="https://i.imgur.com/gvXGf7x.png"/>
   </a>
 </p>
 <p align="center">
   <a href="https://choosealicense.com/licenses/cc-by-sa-4.0/">
-  	<img alt="License: CC-BY-SA-4.0" src="https://img.shields.io/github/license/1nfocalypse/CryptoWriteup">
+  	<img alt="License: CC-BY-SA-4.0" src="https://img.shields.io/github/license/1nfocalypse/CryptoWriteup"/>
   </a>
 </p>
 <h2 align="center">Cryptography</h3>
@@ -104,7 +104,9 @@ Given the mappings:
 - $A \leftrightarrow 0$
 - $B \leftrightarrow 1$
 - $C \leftrightarrow 2$
-- and so on,
+- and so on, as depicted below,
+
+<img src="https://i.imgur.com/HQnp6O0.png" alt="Alphabet Table" width="100%"/>
 
 Let the $\mathit{cleartext}\$, or original message M, be "ILIKECRYPTOGRAPHY". Let k = 3. Applying the encryption function, we obtain:
 - $C_{1} = I + 3 \rightarrow C_{1} = 8 + 3\\ \mathbf{mod}\\ 26= 11$
@@ -209,7 +211,9 @@ $D_{k}$ is defined as:
 - $R_{i} = L_{i+1}$
 - $L_{i} = R_{i+1} \bigoplus F(L_{i+1},K_{i})$
 
-Which yields the plaintext message M. 
+Which yields the plaintext message M. A visual of this process is shown below.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Feistel_cipher_diagram_en.svg/1024px-Feistel_cipher_diagram_en.svg.png" alt="Feistel Network" width="30%"/>
 
 Feistel Networks are also able to utilize unbalanced $L$ and $R$ subsets with a modified structure, however, this is the generic form for which they take.
 
