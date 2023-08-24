@@ -227,8 +227,8 @@ From this point forward, some additional background in Abstract Algebra and Numb
 
 We must first define one of the foundations for the rest of the writeup, which is an algebraic structure known as a $\mathit{Group}$. A group is a set of numbers, defined under some operation, denoted here as $\bullet$, such that the following $\mathit{axioms}$, or rules, are satisfied:
 
-- Associativity: $\forall a,b,c \in G, a \bullet (b \bullet C) = (a \bullet b) \bullet c$
-- Identity: $\exists i \in G : \forall a \in G, i \bullet a = a, a \bullet i = a$.
+- Associativity: $\forall a,b,c \in G, a \bullet (b \bullet c) = (a \bullet b) \bullet c$
+- Identity: $\exists i \in G : \forall g \in G, i \bullet a = a, a \bullet i = a$.
 - Inverse: $\forall a \in G, \exists b : a \bullet b = i, b \bullet a = i$, where $i$ is the identity element.
 - Closure: $\forall a,b \in G, \exists c \in G : a \bullet b = c$.
 
