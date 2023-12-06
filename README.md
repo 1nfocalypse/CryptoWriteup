@@ -357,7 +357,14 @@ $R = ((S^2 - x_1 - x_2) \bmod p$, $(-y_1 + S(x_p - x_r)) \bmod p$)
 
 Where $S$ is the slope between the original points. 
 
-In the case of adding two of the same points, $P + P$, we obtain the point at infinity, $\mathscr{O}$.
+In the case of adding two of the same points, $P + P$, we encounter point doubling. In this case, we find:
+
+$\lambda = \frac{3x^{2}+a}{2y} \bmod p$
+
+$x_{r} = \lambda^{2} - 2x \bmod p$
+
+$y_{r} = \lambda (x - x_{r}) - y \bmod p$
+
 
 Lastly, if we are adding some point and the point at infinity, $P + \mathscr{O}$, by definition, we obtain $P$.
 
