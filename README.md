@@ -42,6 +42,7 @@ This document is intended to serve as a reference guide along with as a resource
 
 
 Most informationation is sourced from [Coding Theory and Cryptography: The Essentials 2Ed](https://www.amazon.com/Coding-Theory-Cryptography-Essentials-Mathematics/dp/0824704657/), Wikipedia, and personal notes from a university mathematics course. Some of the contents here either have or will have toy implementations of them in C++ on my main profile. These projects are ongoing, and as such may not be completed or fully functional by the time of reading. Current implementations are:
+- [Viginère Cipher](https://github.com/1nfocalypse/Entropic)
 - [Feistel Network](https://github.com/1nfocalypse/Feisty)
 
 
