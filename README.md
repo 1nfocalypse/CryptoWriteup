@@ -408,6 +408,7 @@ Here are some good resources for additional information about cryptography, alon
 - [An Introduction to Mathematical Cryptography](https://www.amazon.com/dp/1493917102/), by Jeffrey Hoffstein et. Al.
 - [A Course in Number Theory and Cryptography](https://www.amazon.com/dp/1461264421/), by Neil Koblitz
 - [Yet Another Introductory Number Theory Textbook - Cryptology Emphasis](https://math.libretexts.org/Bookshelves/Combinatorics_and_Discrete_Mathematics/Yet_Another_Introductory_Number_Theory_Textbook_-_Cryptology_Emphasis_(Poritz)), by Jonathan Poritz (This one's free!)
+- [Applied Cryptography: Protocols, Algorithms and Source Code in C](https://www.amazon.com/gp/product/1119096723/)
 
 ## Problems
 Practice Problems are available [here](/practice.md), and solutions are available [here](/solved.md).
