@@ -191,7 +191,7 @@ In 1863, a man named Friedrich Kasiski proposed a method of determining the key 
 ## Feistel Networks
 
 Feistel networks are the conclusion of the "Classical Cryptography" portion of this writeup. A Feistel Network is a $\mathit{block}\\ \mathit{cipher}$, which utilizes blocks of cleartext of a fixed size. Feistel Networks operate via $\mathit{confusion}$ and $\mathit{diffusion}$. Confusion is the goal of confusing the relationship between the key and the ciphertext, and diffusion is the goal of making the ciphertext bit depend on multiple bits of plaintext data. A Feistel Cipher maps $2n$ bits to a ciphertext of the same length,
-with a key of length $n$, where $n \in \mathbb{N}$. Some function F, typically a XOR or substitution, must also be defined. Once this has been determined, a number of rounds, key, and cleartext are passed to the Feistel network, where the number of rounds is the number of iterations that a Feistel Network will go through, the key is some key $k$ of length $n$, 
+with a key of length $n$, where $n \in \mathbb{N}$. Some function F, typically a XOR, substitution, or some combination of the sort, must also be defined. Once this has been determined, a number of rounds $r$, key, and cleartext are passed to the Feistel network, where the number of rounds is the number of iterations that a Feistel Network will go through, the key is some key $k$ of length $n$, 
 and the cleartext is the original message $m$.
 
 At this point, the Feistel Nework functions as follows.
